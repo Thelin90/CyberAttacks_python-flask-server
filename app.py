@@ -15,12 +15,12 @@ CORS(app)
 
 data_to_json = []
 
-client = pyorient.OrientDB( "localhost", 2424 )
-client.set_session_token( True )
-client.connect( "user_root", "your_root_pass" )
-client.db_open( "CyberAttacks", "db_user", "db_pass" )
+client = pyorient.OrientDB("localhost", 2424)
+client.set_session_token(True)
+client.connect("user_root", "your_root_pass")
+client.db_open("CyberAttacks", "db_user", "db_pass")
 
-loop = (client.command( "select * from Domain ORDER BY @rid ASC LIMIT 20" ))
+loop = (client.command("select * from Domain ORDER BY @rid ASC LIMIT 20"))
 
 for result in loop:
     data_to_json.append({'Domain': result.Domain, 'AuthProtocol': result.AuthProtocol, 'LogonType':result.LogonType, 'Destination': result.Destination,'Source': result.Source,'User': result.User,'DateTime': result.DateTime, 'LogFile': result.LogFile, 'Type': result.Type, 'EventID': result.EventID})
